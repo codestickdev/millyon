@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Northwell Clean Swash';
+    src: url('NorthwellCleanSwash.woff2') format('woff2'),
+        url('NorthwellCleanSwash.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Northwell';
+    src: url('Northwell.woff2') format('woff2'),
+        url('Northwell.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Northwell Alt';
+    src: url('NorthwellAlt.woff2') format('woff2'),
+        url('NorthwellAlt.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Northwell Swash';
+    src: url('NorthwellSwash.woff2') format('woff2'),
+        url('NorthwellSwash.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Northwell Clean';
+    src: url('NorthwellClean.woff2') format('woff2'),
+        url('NorthwellClean.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Northwell Clean Alt';
+    src: url('NorthwellCleanAlt.woff2') format('woff2'),
+        url('NorthwellCleanAlt.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
