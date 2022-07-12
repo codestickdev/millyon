@@ -141,7 +141,7 @@ function millyon_scripts() {
 	wp_enqueue_style( 'millyon-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'millyon-style', 'rtl', 'replace' );
 
-	wp_enqueue_style( 'millyon-custom', get_template_directory_uri() . '/css/custom.css', array(), _S_VERSION );
+	wp_enqueue_style( 'millyon-custom', get_template_directory_uri() . '/css/custom.css', array(), '1.1' );
 
 	// jQuery
 	wp_register_script( 'jquery', get_template_directory_uri() . '/plugins/jQuery/jquery-3.6.0.min.js', null, null, true );
@@ -192,3 +192,63 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Custom strings
+ */
+add_action('init', function() {
+	pll_register_string('millyon', 'Zobacz');
+	pll_register_string('millyon', 'O nas');
+	pll_register_string('millyon', 'Dowiedz się więcej');
+	pll_register_string('millyon', 'Działamy z najlepszymi');
+	pll_register_string('millyon', 'w liczbach');
+	pll_register_string('millyon', 'W sprzedaży');
+	pll_register_string('millyon', 'Strona inwestycji');
+	pll_register_string('millyon', 'Zobacz film');
+	pll_register_string('millyon', 'W przygotowaniu');
+	pll_register_string('millyon', 'Zakończone');
+	pll_register_string('millyon', 'Aktualności');
+	pll_register_string('millyon', 'Nasz zespół');
+	pll_register_string('millyon', 'Kontakt');
+	pll_register_string('millyon', 'Warszawa');
+	pll_register_string('millyon', 'Skontaktuj się z nami');
+	pll_register_string('millyon', 'Jeśli zainteresowała Cię któraś z naszych inwestycji, lub masz inne pytania, napisz do nas wiadomość. Skontaktujemy się z tobą.');
+	pll_register_string('millyon', 'Imię i Nazwisko');
+	pll_register_string('millyon', 'Telefon');
+	pll_register_string('millyon', 'Która inwestycja Cię interesuje?');
+	pll_register_string('millyon', 'Twoja wiadomość');
+	pll_register_string('millyon', 'Wyślij zapytanie');
+	pll_register_string('millyon', 'Biura sprzedaży');
+	pll_register_string('millyon', 'Nagrody i wyróżnienia');
+	pll_register_string('millyon', 'na polskim rynku');
+	pll_register_string('millyon', 'sprzedanych mieszkań');
+	pll_register_string('millyon', 'zrealizowanych inwestycji');
+	pll_register_string('millyon', 'powierzchni inwestycji');
+	pll_register_string('millyon', 'Wyrażam zgodę na przetwarzanie danych osobowych na potrzeby odpowiedzi na moje zgłoszenie. Więcej informacji w <a href="/wp-content/uploads/2022/06/polityka_prywatnosci.pdf" target="_blank">polityce prywatności</a>');
+});
+
+add_action('wp_ajax_contactForm', 'contactForm');
+add_action('wp_ajax_nopriv_contactForm', 'contactForm'); 
+function contactForm(){
+	$name = isset( $_POST['name'] ) ? $_POST['name'] : '';
+	$phone = isset( $_POST['phone'] ) ? $_POST['phone'] : '';
+	$mail = isset( $_POST['mail'] ) ? $_POST['mail'] : '';
+	$invest = isset( $_POST['dropdown'] ) ? $_POST['dropdown'] : '';
+	$usermessage = isset( $_POST['message'] ) ? $_POST['message'] : '';
+	$mailto = isset( $_POST['mailto'] ) ? $_POST['mailto'] : '';
+
+	$to = $mailto;
+	$subject = '[Mill-yon] Wiadomość ze strony mill-yon.pl';
+	$message = "Imię i nazwisko: " . $name . "<br/>
+	Telefon: " . $phone . "<br/>
+	Mail: " . $mail . "<br/>
+	Inwestycja: " . $invest . "<br/>
+	Wiadomość: " . $usermessage;
+	$headers = "Content-Type: text/html; charset=UTF-8";
+	
+	$sent = false;
+	$sent = wp_mail( $to, $subject, $message, $headers);
+
+	echo $sent;
+
+	wp_die();
+}

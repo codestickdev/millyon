@@ -31,8 +31,7 @@
 			<div class="siteHeader__menu">
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'millyon' ); ?></button>
 				<div class="siteHeader__lang">
-					<a href="#">EN</a>
-					<a href="#" class="active">PL</a>
+					<?php pll_the_languages( array( 'show_flags' => 0, 'show_names' => 1, 'display_names_as' => 'slug', ) ); ?>
 				</div>
 				<?php
 					wp_nav_menu(
@@ -46,3 +45,17 @@
 			</div>
 		</div>
 	</header><!-- #masthead -->
+	<div class="menuMobile">
+		<div class="menuMobile__close"></div>
+		<div class="menuMobile__wrap">
+			<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+						'menu_class'	 => 'menu-ul',
+					)
+				);
+			?>
+		</div>
+	</div>
